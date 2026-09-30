@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "LyricGlass",
+  "version": "0.1.0",
+  "identifier": "app.lyricglass.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev:web",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build:web",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "settings",
+        "create": false,
+        "title": "LyricGlass · 桌面歌词",
+        "width": 1120,
+        "height": 820,
+        "minWidth": 780,
+        "minHeight": 600,
+        "center": true,
+        "backgroundColor": "#111619"
+      },
+      {
+        "label": "overlay",
+        "create": false,
+        "title": "LyricGlass Overlay",
+        "url": "index.html?overlay",
+        "width": 860,
+        "height": 230,
+        "minWidth": 300,
+        "minHeight": 100,
+        "x": 240,
+        "y": 650,
+        "transparent": true,
+        "decorations": false,
+        "shadow": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "resizable": true,
+        "visible": false,
+        "focus": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": ["icons/icon.ico", "icons/32x32.png", "icons/128x128.png"],
+    "shortDescription": "Customizable Windows desktop lyrics overlay",
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["SimpChinese", "English"],
+        "displayLanguageSelector": true
+      }
+    }
+  }
+}
